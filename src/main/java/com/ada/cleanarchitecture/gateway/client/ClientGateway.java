@@ -1,6 +1,8 @@
 package com.ada.cleanarchitecture.gateway.client;
 
-public interface ClientGateway<T> {
+import com.ada.cleanarchitecture.controller.mock.TransactionDTO;
 
-    void doRequest(T request);
+public interface ClientGateway<T, T1> {
+
+    TransactionDTO doRequest(T request);
 }
