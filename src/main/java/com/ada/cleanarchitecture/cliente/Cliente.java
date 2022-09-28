@@ -2,10 +2,16 @@ package com.ada.cleanarchitecture.cliente;
 
 import com.ada.cleanarchitecture.cliente.conta.ContaCorrente;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table
 public class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     private String nome;
@@ -13,6 +19,8 @@ public class Cliente {
     private LocalDate entrada;
     private String documento;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "conta_id")
     private ContaCorrente conta;
 
     private String senha;

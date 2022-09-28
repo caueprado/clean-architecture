@@ -1,11 +1,9 @@
 package com.ada.cleanarchitecture.gateway.repository;
 
 import com.ada.cleanarchitecture.cliente.Cliente;
-import com.ada.cleanarchitecture.gateway.database.ExternalGateway;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public class ClienteGateway extends AbstractApplicationGateway<Cliente, Integer> {
-
-    public ClienteGateway(ExternalGateway externalGateway) {
-        super(externalGateway);
-    }
+@Repository
+public interface ClienteGateway extends CrudRepository<Cliente, Integer> {
 }

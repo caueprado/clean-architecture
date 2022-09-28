@@ -1,15 +1,24 @@
 package com.ada.cleanarchitecture.cliente.conta;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table
 public class ContaCorrente {
 
- private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     private String banco;
     private String agencia;
     private String contaCorrente;
     private BigDecimal saldo;
+
+    public ContaCorrente() {
+    }
 
     public ContaCorrente(String banco, String agencia, String contaCorrente, BigDecimal saldo) {
         this.banco = banco;
