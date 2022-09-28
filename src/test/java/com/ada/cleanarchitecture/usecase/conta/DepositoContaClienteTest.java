@@ -3,7 +3,7 @@ package com.ada.cleanarchitecture.usecase.conta;
 import com.ada.cleanarchitecture.cliente.Cliente;
 import com.ada.cleanarchitecture.cliente.ClienteDepositoRequest;
 import com.ada.cleanarchitecture.cliente.conta.ContaCorrente;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,9 +15,10 @@ public class DepositoContaClienteTest {
     @Test
     public void dadoUmClienteComUmaContaValida_QuandoSolicitaFazerUmDeposito_EntaoDeveInserirDinheiroComSucesso() {
         BigDecimal quantia = new BigDecimal(50_000);
+        ContaCorrente de = criaContaCorrente();
         ContaCorrente conta = criaContaCorrente();
 
-        ClienteDepositoRequest request = new ClienteDepositoRequest(conta, quantia);
+        ClienteDepositoRequest request = new ClienteDepositoRequest(de, conta, quantia);
         depositoContaCliente.execute(request);
     }
 

@@ -8,7 +8,8 @@ import com.ada.cleanarchitecture.controller.request.ClienteAcessaContaRequest;
 import com.ada.cleanarchitecture.gateway.database.ExternalGateway;
 import com.ada.cleanarchitecture.gateway.database.MemoryDataBaseGateway;
 import com.ada.cleanarchitecture.gateway.repository.ClienteGateway;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ public class AcessaContaCorrenteTest {
 
     private AcessaContaCorrente acessaContaCorrente;
 
+    @Autowired
     private ClienteGateway clienteGateway;
 
     private AccountAccessAdapter adapter;
@@ -35,7 +37,6 @@ public class AcessaContaCorrenteTest {
         gateway.save(Math.toIntExact(clienteEsperado.getId()), clienteEsperado);
 
         var request = new ClienteAcessaContaRequest(123, clienteEsperado.getDocumento(), senhaInserida);
-        clienteGateway = new ClienteGateway(gateway);
         acessaContaCorrente = new AcessaContaCorrente(clienteGateway);
 
         ClienteContaCorrente result = Optional.of(acessaContaCorrente.execute(request))

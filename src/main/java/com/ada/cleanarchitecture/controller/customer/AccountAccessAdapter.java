@@ -4,7 +4,9 @@ import com.ada.cleanarchitecture.adapter.Adapter;
 import com.ada.cleanarchitecture.cliente.Cliente;
 import com.ada.cleanarchitecture.cliente.ClienteContaCorrente;
 import com.ada.cleanarchitecture.cliente.conta.ContaCorrente;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AccountAccessAdapter implements Adapter<ClienteContaCorrente, Cliente> {
 
     @Override
