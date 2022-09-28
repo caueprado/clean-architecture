@@ -5,15 +5,25 @@ import java.math.BigDecimal;
 
 public class ClienteDepositoRequest {
 
+    private ContaCorrente de;
     private ContaCorrente para;
     private BigDecimal valor;
 
-    public ClienteDepositoRequest(ContaCorrente para, BigDecimal valor) {
+    public ClienteDepositoRequest(ContaCorrente de, ContaCorrente para, BigDecimal valor) {
+        this.de = de;
         this.para = para;
         this.valor = valor;
     }
 
     public ClienteDepositoRequest() {
+    }
+
+    public ContaCorrente getDe() {
+        return de;
+    }
+
+    public void setDe(ContaCorrente de) {
+        this.de = de;
     }
 
     public ContaCorrente getPara() {
