@@ -3,6 +3,7 @@ package com.ada.cleanarchitecture.usecase.cliente;
 import com.ada.cleanarchitecture.cliente.Cliente;
 import com.ada.cleanarchitecture.cliente.ClienteContaCorrente;
 import com.ada.cleanarchitecture.cliente.conta.ContaCorrente;
+import com.ada.cleanarchitecture.controller.customer.AccountAccessAdapter;
 import com.ada.cleanarchitecture.controller.request.ClienteAcessaContaRequest;
 import com.ada.cleanarchitecture.gateway.database.ExternalGateway;
 import com.ada.cleanarchitecture.gateway.database.MemoryDataBaseGateway;
@@ -11,6 +12,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class AcessaContaCorrenteTest {
 
@@ -19,6 +21,8 @@ public class AcessaContaCorrenteTest {
     private AcessaContaCorrente acessaContaCorrente;
 
     private ClienteGateway clienteGateway;
+
+    private AccountAccessAdapter adapter;
 
     @Test
     public void dadoUmClienteComContaCorrenteAtiva_QuandoEntrarComCPF_EntaoRetornaremosAContaCorrente() {
@@ -34,7 +38,9 @@ public class AcessaContaCorrenteTest {
         clienteGateway = new ClienteGateway(gateway);
         acessaContaCorrente = new AcessaContaCorrente(clienteGateway);
 
-        ClienteContaCorrente result = acessaContaCorrente.execute(request);
+        ClienteContaCorrente result = Optional.of(acessaContaCorrente.execute(request))
+                .map(adapter::adapt)
+                .orElseThrow();
 
         assert result.getContaCorrente().equals(contaCorrenteEsperada.getContaCorrente());
         assert result.getAgencia().equals(contaCorrenteEsperada.getAgencia());
