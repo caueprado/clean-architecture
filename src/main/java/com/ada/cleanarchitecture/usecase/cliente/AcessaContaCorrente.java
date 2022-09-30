@@ -21,7 +21,8 @@ public class AcessaContaCorrente implements ApplicationUseCase<ClienteAcessaCont
     @Override
     public Cliente execute(ClienteAcessaContaRequest input) {
         Cliente clienteAtual = clienteGateway
-                .findById(input.getId());
+                .findById(input.getId())
+                .orElseThrow();
 
         if (!clienteAtual.getSenha().equals(input.getSenha())) {
             throw new IncorrectPasswordException();

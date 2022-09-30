@@ -35,7 +35,7 @@ public class DepositoContaCliente implements ApplicationUseCase<ClienteDepositoR
 
     private void doOperation(final ContaCorrente contaCorrente) {
         contaCorrenteGateway.findByContaCorrente(contaCorrente.getContaCorrente())
-                .ifPresent(f -> contaCorrenteGateway.save(Math.toIntExact(f.getId()), contaCorrente));
+                .ifPresent(f -> contaCorrenteGateway.save(contaCorrente));
     }
 
     /**
